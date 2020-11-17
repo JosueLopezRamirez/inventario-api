@@ -1,20 +1,47 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { ProductType } from '../product-type/product-type.entity';
 
 @Entity()
 export class Product {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    cost_price: number;
+  @Column()
+  description: string;
 
-    @Column()
-    sale_price: number;
+  @Column()
+  stock: number;
 
-    @Column()
-    createdAt: Date;
+  @Column()
+  provider_id: number;
+
+  @Column({ name: 'typeId' })
+  type_id: number;
+
+  @Column()
+  cost_price: number;
+
+  @Column()
+  sale_price: number;
+
+  @Column({ type: 'date' })
+  createdAt: Date;
+
+  @DeleteDateColumn()
+  deleteAt: Date;
+
+  @ManyToOne(
+    () => ProductType,
+    type => type.product,
+  )
+  type: ProductType[];
 }

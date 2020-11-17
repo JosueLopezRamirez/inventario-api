@@ -16,6 +16,7 @@ import { ModelsModule } from './models/models.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
       logging: true,
+      // dropSchema: true
     }),
     ModelsModule,
   ],
