@@ -2,13 +2,11 @@ import {
   Column,
   DeleteDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Product } from '../product/product.entity';
 
-@Entity()
-export class ProductType {
+@Entity({ name: 'ciudad' })
+export class CiudadEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -17,7 +15,4 @@ export class ProductType {
 
   @DeleteDateColumn()
   deleteAt: Date;
-
-  @OneToMany(() => Product, type => type.type)
-  product: Product[];
 }
